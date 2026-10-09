@@ -1,5 +1,4 @@
 // Declarations
-import R from "./ramda.js";
 
 /**
  * @module Boop
@@ -403,6 +402,8 @@ function updateBedWithBoops(gameState, boopables) {
  */
 function findRowsOfThree(bedState) {
     const trios = [];
+    const rowColNums = [0, 1, 2, 3, 4, 5];
+    const trioRange = [1, 2];
 
     const directions = [
         [0, 1],   // horizontal
@@ -410,8 +411,8 @@ function findRowsOfThree(bedState) {
         [1, 1],   // diagonal down-right
         [1, -1]  // diagonal down-left
     ];
-    R.range(0, 6).forEach(function (row) {
-        R.range(0, 6).forEach(function (column) {
+    rowColNums.forEach(function (row) {
+        rowColNums.forEach(function (column) {
             const cell = bedState[row][column];
             //skips if it's an empty cell
             if (!cell) {
@@ -427,7 +428,7 @@ function findRowsOfThree(bedState) {
                     "value": bedState[row][column]
                 }];
 
-                R.range(1, 3).some(function (step) {
+                trioRange.some(function (step) {
                     const nextRow = row + dirRow * step;
                     const nextCol = column + dirCol * step;
                     if (
