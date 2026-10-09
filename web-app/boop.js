@@ -1,5 +1,4 @@
 // Declarations
-import R from "./ramda.js";
 
 /**
  * @module Boop
